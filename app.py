@@ -38,6 +38,7 @@ class PantryUpdate(BaseModel):
 # --- LOGICA DI ESTRAZIONE ---
 def update_pantry_state(user_input: str):
     llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
+    
     # Utilizzo di with_structured_output per garantire coerenza con la sidebar
     structured_llm = llm.with_structured_output(PantryUpdate)
     
@@ -114,7 +115,7 @@ def get_chef_agent():
         handle_parsing_errors=True,
         max_iterations=5 # Evita loop infiniti
     )
-    
+
 # --- INITIALIZATION ---
 if "messages" not in st.session_state:
     st.session_state.messages = []
